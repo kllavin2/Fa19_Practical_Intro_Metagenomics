@@ -13,7 +13,7 @@ import gzip
 import re
 
 # Test file from the Monterey Bay Microbial Study from the iMicrobe repository
-file = 'CAM_PROJ_MontereyBay.read_pep.fa.gz'
+file = "CAM_PROJ_SargassoSea.read_pep.fa"
 
 # Holds the number of sequences found in the file
 seq_count = 0
@@ -37,7 +37,7 @@ if file.endswith('.fa.gz') or file.endswith('.fasta.gz'):
 #                    end = int(end.group().split("=")[1])
 #                    res_count = res_count + end - begin
             else:
-                line.strip('\n')
+                line = line.rstrip('\n')
                 for x in line:
                     if x.isalpha():
                         res_count += 1
@@ -52,7 +52,7 @@ else:
                 if line.startswith('>'):
                     seq_count += 1
                 else:
-                    line.strip('\n')
+                    line = line.rstrip('\n')
 
                     for x in line:
                         if x.isalpha():
