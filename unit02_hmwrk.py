@@ -10,10 +10,9 @@ up.
 """
 # for .gz files
 import gzip
-import re
 
 # Test file from the Monterey Bay Microbial Study from the iMicrobe repository
-file = "CAM_PROJ_SargassoSea.read_pep.fa"
+file = '/home/kristi/Documents/F19/CAM_PROJ_SargassoSea.read_pep.fa'
 
 # Holds the number of sequences found in the file
 seq_count = 0
@@ -26,21 +25,11 @@ if file.endswith('.fa.gz') or file.endswith('.fasta.gz'):
         for line in f:
             if line.startswith('>'):
                 seq_count += 1
-#                length = re.search(r'length=\d*', line)
-#                if length:
-#                    res_count += int(length.group().split("=")[1])
-#                begin = re.search(r'begin=\d*', line)
-#                end = re.search(r'end=\d*', line)
-#
-#                if begin and end:
-#                    begin = int(begin.group().split("=")[1])
-#                    end = int(end.group().split("=")[1])
-#                    res_count = res_count + end - begin
             else:
-                line = line.rstrip('\n')
+                line = line.rstrip()
                 for x in line:
-                    if x.isalpha():
-                        res_count += 1
+                    res_count += len(x)
+
     print('Total sequences found: ', seq_count)
     print('Total residues found: ', res_count)
 
@@ -52,10 +41,10 @@ else:
                 if line.startswith('>'):
                     seq_count += 1
                 else:
-                    line = line.rstrip('\n')
+                    line = line.rstrip()
 
                     for x in line:
-                        if x.isalpha():
-                            res_count += 1
+                        res_count += len(x)
         print('Total sequences found: ', seq_count)
         print('Total residues found: ', res_count)
+
